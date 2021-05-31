@@ -11,7 +11,7 @@ if (has("termguicolors"))
  set termguicolors
 endif
 syntax on
-colorscheme dracula
+colorscheme gruvbox
 " terminal
 " open new split panes to right and below
 set splitright

@@ -14,6 +14,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " theme
 Plug 'dracula/vim', { 'as': 'dracula'}
+Plug 'morhetz/gruvbox'
 " icons
 Plug 'ryanoasis/vim-devicons'
 " statusline
@@ -206,6 +207,8 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 autocmd BufWinEnter * silent NERDTreeMirror
 
 " ---- fzf
+" placement
+let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:70%' --layout reverse --margin=1,4"
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'vsplit',
