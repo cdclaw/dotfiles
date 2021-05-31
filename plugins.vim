@@ -33,6 +33,19 @@ call plug#end()
 
 
 
+" ---------- PLUGIN KEY MAPPING ----------
+" fzf
+nnoremap <silent> <C-p> :call FZFOpen(':GFiles')<CR>
+nnoremap <silent> <C-f> :call FZFOpen(':Files')<CR> 
+" NERDTree
+noremap <silent> <C-b> :NERDTreeToggle<CR>
+" nerdcommenter
+" " use ',c' to comment out the line in insert mode
+inoremap ,c <C-o>: call NERDComment(0, "toggle")<C-m>
+" " use 'ctrl /' to toggle comment
+nmap <C-_> <Plug>NERDCommenterToggle
+vmap <C-_> <Plug>NERDCommenterToggle
+
 " ---------- PLUGIN CONFIG ----------
 " ---- nerdcommenter
 let g:NERDCreateDefaultMappings = 1
