@@ -28,6 +28,7 @@ I modularized my init.vim file just to make it looks clearer. My init.vim does n
 * File Explorer - [NERDTree]('https://github.com/preservim/nerdtree/blob/master/doc/NERDTree.txt')
 * Icons - [vim-devicons]('https://github.com/ryanoasis/vim-devicons')
 * Statusline - [lightline]('https://github.com/itchyny/lightline.vim')
+* Statusline git branch - [vim-gitbranch]('https://github/itchyny/vim-gitbranch')
 * Start Screen - [vim-startify]('https://github.com/mhinz/vim-startify')
 * Markdown Preview - [markdown-preview]('https://github.com/iamcco/markdown-preview.nvim')
 * Commenter - [nerdcommenter]('https://github.com/preservim/nerdcommenter')
