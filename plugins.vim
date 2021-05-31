@@ -18,6 +18,7 @@ Plug 'dracula/vim', { 'as': 'dracula'}
 Plug 'ryanoasis/vim-devicons'
 " statusline
 Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-gitbranch'
 " NeoVim start screen
 Plug 'mhinz/vim-startify'
 " markdown preview
@@ -182,10 +183,11 @@ let g:lightline = {
 	\ 'colorscheme': 'nord',
 	\ 'active': {
 	\ 	'left': [ [ 'mode', 'paste' ],
-	\ 		  [ 'cocstatus', 'readonly', 'filename', 'modified'] ]
+	\ 					  [ 'cocstatus', 'gitbranch', 'readonly', 'filename', 'modified'] ]
 	\ },
 	\ 'component_function': {
-	\ 	'costatus': 'coc#status'
+	\ 	'costatus': 'coc#status',
+	\ 	'gitbranch': 'gitbranch#name'
 	\ },
 	\ }
 " ---- nerdtree-syntax-highlight

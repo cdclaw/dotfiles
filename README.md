@@ -37,6 +37,8 @@ I modularized my init.vim file just to make it looks clearer. My init.vim does n
 
 Panel navigation - `alt+hjkl` to move bwteen split/vsplit panels
 
+Switch between tabs - `gt`
+
 Open terminal - `ctrl+n`
 
 `<ESC>` remap - jk / kj (yes, I mapped both of them just in case)
@@ -58,7 +60,7 @@ Coc
 
 Nerdcommenter
 * `ctrl+/` to toggle comment
-
+* `,+c` to toggle comment in insert mode
 
 #### Documentation
 * [NERDTree]('https://github.com/preservim/nerdtree/blob/master/doc/NERDTree.txt')
