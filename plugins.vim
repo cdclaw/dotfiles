@@ -13,6 +13,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " theme
+Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 Plug 'dracula/vim', { 'as': 'dracula'}
 Plug 'morhetz/gruvbox'
 Plug 'folke/tokyonight.nvim'
@@ -224,7 +225,7 @@ let g:startify_custom_header = [
 	\]
 " ---- lightline
 let g:lightline = {
-	\ 'colorscheme': 'tokyonight',
+	\ 'colorscheme': 'spaceduck',
 	\ 'active': {
 	\ 	'left': [ [ 'mode', 'paste' ],
 	\ 					  [ 'cocstatus', 'gitbranch', 'readonly', 'filename', 'modified'] ]

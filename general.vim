@@ -22,15 +22,25 @@ set ignorecase " case insensitive when search
 set smartcase " smart case sensitive, change to case sensitive when search term includes uppercase letter
 
 " ---------- Theme / Color ----------
+" ----- spaceduck -----
 set background=dark
-if (has("termguicolors"))
- set termguicolors
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+	set termguicolors
 endif
-let g:tokyonight_style = "night" " storm, night, day
-let g:tokyonight_italic_functions = 1
-colorscheme tokyonight
-set background=dark
+colorscheme spaceduck
+" ---------------------
 
+" ----- tokyonight -----
+" if (has("termguicolors"))
+"  set termguicolors
+" endif
+" let g:tokyonight_style = "night" " storm, night, day
+" let g:tokyonight_italic_functions = 1
+" colorscheme tokyonight
+" set background=dark
+" ----------------------
 " ---------- Syntax Highlight ----------
 if has('syntax')  
 	syntax enable 
