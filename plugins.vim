@@ -15,6 +15,9 @@ Plug 'junegunn/fzf.vim'
 " theme
 Plug 'dracula/vim', { 'as': 'dracula'}
 Plug 'morhetz/gruvbox'
+Plug 'folke/tokyonight.nvim'
+" syntax highlight
+Plug 'sheerun/vim-polyglot'
 " icons
 Plug 'ryanoasis/vim-devicons'
 " statusline
@@ -26,6 +29,10 @@ Plug 'mhinz/vim-startify'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " commenter
 Plug 'preservim/nerdcommenter'
+" autoclose tag
+Plug 'alvan/vim-closetag'
+" indent line
+Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
@@ -47,6 +54,25 @@ nmap <C-_> <Plug>NERDCommenterToggle
 vmap <C-_> <Plug>NERDCommenterToggle
 
 " ---------- PLUGIN CONFIG ----------
+" ---- indentLine
+let g:indentLine_setColors = 0
+let g:indentLine_char = '│'
+au FileType markdown let g:indentLine_setConceal= 0
+" let g:indentLine_fileTypeExclude = ['json','markdow']
+" ---- vim-closetag
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+let g:closetag_filetypes = 'html,xhtml,phtml,jsx,javascript'
+let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+let g:closetag_close_shortcut = '<leader>>'
+let g:closetag_shortcut = '>'
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ 'typescriptreact': 'jsxRegion,tsxRegion',
+    \ 'javascriptreact': 'jsxRegion',
+    \ }
+
 " ---- nerdcommenter
 let g:NERDCreateDefaultMappings = 1
 let g:NERDSpaceDelims = 1 " add spaces after comment delimiters by default
@@ -68,7 +94,9 @@ set nobackup " some server have issues with backup files
 set nowritebackup
 set cmdheight=2 " give more space for displaying message
 set updatetime=300 " having longer update time leads to noticeable delays and poor user experience
-set shortmess+=c 
+set shortmess+=c
+
+autocmd FileType javascript let b:coc_pairs_disabled = ['<']
 " " Always show the signcolumn, otherwise it would shift the text each time
 " " diagnostics appear/become resolved.
 if has("nvim-0.5.0") || has("patch-8.1.1564")
@@ -194,7 +222,7 @@ let g:startify_custom_header = [
 	\]
 " ---- lightline
 let g:lightline = {
-	\ 'colorscheme': 'nord',
+	\ 'colorscheme': 'tokyonight',
 	\ 'active': {
 	\ 	'left': [ [ 'mode', 'paste' ],
 	\ 					  [ 'cocstatus', 'gitbranch', 'readonly', 'filename', 'modified'] ]
