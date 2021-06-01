@@ -42,6 +42,8 @@ call plug#end()
 
 " ---------- PLUGIN KEY MAPPING ----------
 " fzf
+" use <Esc> to exit fzf
+tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 nnoremap <silent> <C-p> :call FZFOpen(':GFiles')<CR>
 nnoremap <silent> <C-f> :call FZFOpen(':Files')<CR> 
 " NERDTree
