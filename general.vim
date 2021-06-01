@@ -5,6 +5,12 @@ set smarttab
 set cindent
 set autoindent
 set ruler
+set number
+set nocompatible " required by polyglot
+set t_Co=256
+set tabstop=2
+set shiftwidth=2
+set noshowmode " turn off mode display - lightline will take care of that
 " Recover last cursor position when open files
 autocmd BufReadPost *
 	\ if line("'\"") > 1 && line("'\"") <= line("$") |
@@ -14,15 +20,16 @@ autocmd BufReadPost *
 " ---------- Search Settings ---------- 
 set ignorecase " case insensitive when search
 set smartcase " smart case sensitive, change to case sensitive when search term includes uppercase letter
-set tabstop=2
-set shiftwidth=2
-set noshowmode " turn off mode display - lightline will take care of that
 
 " ---------- Theme / Color ----------
+set background=dark
 if (has("termguicolors"))
  set termguicolors
 endif
-colorscheme gruvbox
+let g:tokyonight_style = "night" " storm, night, day
+let g:tokyonight_italic_functions = 1
+colorscheme tokyonight
+set background=dark
 
 " ---------- Syntax Highlight ----------
 if has('syntax')  
