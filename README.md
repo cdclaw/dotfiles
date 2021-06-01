@@ -66,4 +66,3 @@ Nerdcommenter
 #### Documentation
 * [NERDTree]('https://github.com/preservim/nerdtree/blob/master/doc/NERDTree.txt')
 
-
