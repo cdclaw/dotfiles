@@ -1,36 +1,53 @@
-
-" ---------- Basic Settings ----------
+"----------------------------------------------------------------------
+"BASIC SETTINGS
+"----------------------------------------------------------------------
+if has('syntax')  
+	syntax enable 
+	syntax on 
+endif
+set nowrap
 set encoding=UTF-8
-set smarttab
-set cindent
-set autoindent
-set ruler
-set number
+set hidden
+set mouse=a " enable mouse
+set ruler " show cursor position all the time
+set number " line numbers
+set tabstop=2 " insert 2 space for tab
+set shiftwidth=2 " number of space inserted for indentation
+set splitright " open new split panes to right and below
+set splitbelow
 set nocompatible " required by polyglot
-set t_Co=256
-set tabstop=2
-set shiftwidth=2
-set noshowmode " turn off mode display - lightline will take care of that
+set t_Co=256 " support 256 colors
+set noshowmode " [lightline]turn off mode display - lightline will take care of that
+set nobackup " [coc]some server have issues with backup files
+set nowritebackup " [coc]
+set cmdheight=2 " give more space for displaying message
+set updatetime=300 " [coc]having longer update time leads to noticeable delays and poor user experience
+set shortmess+=c
+set clipboard=unnamedplus " copy past between vim and everything else
+set cursorline " enable highlighting of the current line
 " Recover last cursor position when open files
 autocmd BufReadPost *
 	\ if line("'\"") > 1 && line("'\"") <= line("$") |
 	\	 exe "normal! g`\"" |
 	\ endif
 
-" ---------- Search Settings ---------- 
+"----------------------------------------------------------------------
+"TAB & INDENTATION
+"----------------------------------------------------------------------
+set smarttab 
+set expandtab " convert tabs to space
+set cindent
+set autoindent
+
+"----------------------------------------------------------------------
+" SEARCH
+"----------------------------------------------------------------------
 set ignorecase " case insensitive when search
 set smartcase " smart case sensitive, change to case sensitive when search term includes uppercase letter
 
-" ---------- Syntax Highlight ----------
-if has('syntax')  
-	syntax enable 
-	syntax on 
-endif
-
-" ---------- Terminal ----------
-" open new split panes to right and below
-set splitright
-set splitbelow
+"----------------------------------------------------------------------
+"TERMINAL
+"----------------------------------------------------------------------
 " turn terminal to normal mode with escape
 tnoremap <Esc> <C-\><C-n>
 " open terminal on ctrl+n
@@ -40,32 +57,10 @@ function! OpenTerminal()
 endfunction
 nnoremap <c-n> :call OpenTerminal()<CR>
 
-" ---------- Key Mappings ----------
-" use alt+hjkl to move between split/vsplit panels
-tnoremap <A-h> <C-\><C-n><C-w>h
-tnoremap <A-j> <C-\><C-n><C-w>j
-tnoremap <A-k> <C-\><C-n><C-w>k
-tnoremap <A-l> <C-\><C-n><C-w>l
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
 
-" move cursor in insert mode
-noremap <C-h> <left>
-noremap <C-j> <down>
-noremap <C-k> <up>
-noremap <C-l> <right>
-inoremap <C-h> <left>
-inoremap <C-j> <down>
-inoremap <C-k> <up>
-inoremap <C-l> <right>
-
-" map <ESC> to jk and kj 
-inoremap jk <ESC>
-inoremap kj <ESC> 
-
-" ---------- Folding ----------
+"----------------------------------------------------------------------
+" OTHER
+"----------------------------------------------------------------------
 if has('folding')
 	" allow folding
 	set foldenable
@@ -74,7 +69,5 @@ if has('folding')
 	set foldlevel=99
 endif
 
-
-" ---------- Python ----------
-let g:python3_host_prog = '/usr/local/bin/python3' " IMPORTANT: double-check
+let g:python3_host_prog = '/usr/bin/python3' " IMPORTANT: double-check
 " let g:python_host_prog = '/usr/bin/python2' " IMPORTANT: double-check

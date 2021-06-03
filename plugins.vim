@@ -112,12 +112,6 @@ let g:coc_global_extensions = [
 	\ 'coc-json',
 	\ 'coc-prettier',
 	\ ]
-set hidden " TextEdit might fail if hidden is not set
-set nobackup " some server have issues with backup files
-set nowritebackup
-set cmdheight=2 " give more space for displaying message
-set updatetime=300 " having longer update time leads to noticeable delays and poor user experience
-set shortmess+=c
 
 autocmd FileType javascript let b:coc_pairs_disabled = ['<']
 " " Always show the signcolumn, otherwise it would shift the text each time

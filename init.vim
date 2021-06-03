@@ -1,10 +1,8 @@
-" ---------- LOAD CONFIG ----------
+"----------------------------------------------------------------------
+"LOAD MODULES
+"----------------------------------------------------------------------
 
 " ***** Plugins & Configs *****
-source ~/.config/nvim/plugins.vim
+source $HOME/.config/nvim/plugins.vim
 " ***** General Configs *****
-source ~/.config/nvim/general.vim
-
-" ---------- LOAD ENDS ----------
-
-
+source $HOME/.config/nvim/general.vim
