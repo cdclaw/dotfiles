@@ -69,5 +69,5 @@ if has('folding')
 	set foldlevel=99
 endif
 
-let g:python3_host_prog = '/usr/bin/python3' " IMPORTANT: double-check
+let g:python3_host_prog = '/usr/local/bin/python3' " IMPORTANT: double-check
 " let g:python_host_prog = '/usr/bin/python2' " IMPORTANT: double-check

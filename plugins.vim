@@ -1,5 +1,6 @@
-" ---------- PLUGINS ----------
-" ---- vim-plug ---- 
+"----------------------------------------------------------------------
+"vim-plug
+"----------------------------------------------------------------------
 
 call plug#begin(stdpath('data') . '/plugged')
 
@@ -37,10 +38,8 @@ Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
-" ---- vim-plug ends
-
-" ---------- Theme / Color ----------
-
+"----------------------------------------------------------------------
+"THEME & COLORS
 " ----- spaceduck -----
 set background=dark
 if exists('+termguicolors')
@@ -61,7 +60,10 @@ colorscheme spaceduck
 " set background=dark
 " ----------------------
 
-" ---------- PLUGIN KEY MAPPING ----------
+
+"----------------------------------------------------------------------
+"PLUGIN KEY MAPPINGS
+"----------------------------------------------------------------------
 " fzf
 " use <Esc> to exit fzf
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
@@ -76,7 +78,9 @@ inoremap ,c <C-o>: call NERDComment(0, "toggle")<C-m>
 nmap <C-_> <Plug>NERDCommenterToggle
 vmap <C-_> <Plug>NERDCommenterToggle
 
-" ---------- PLUGIN CONFIG ----------
+"----------------------------------------------------------------------
+"PLUGIN CONFIGS
+"----------------------------------------------------------------------
 " ---- indentLine
 let g:indentLine_setColors = 0
 let g:indentLine_char = '│'
