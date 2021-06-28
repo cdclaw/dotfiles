@@ -1,14 +1,21 @@
+" ---- vim-polyglot
+let g:polyglot_disabled = ['markdown']
+
 "----------------------------------------------------------------------
 "vim-plug
 "----------------------------------------------------------------------
 
 call plug#begin(stdpath('data') . '/plugged')
 
-" intellisense
+" lsp intellisense
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'kosayoda/nvim-lightbulb'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 
+" syntaxt highlight
+Plug 'sheerun/vim-polyglot'
 " NERDTree
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -42,23 +49,24 @@ call plug#end()
 "----------------------------------------------------------------------
 "THEME & COLORS
 " ----- spaceduck -----
-set background=dark
-if exists('+termguicolors')
-	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-	set termguicolors
-endif
-colorscheme spaceduck
+" set background=dark
+" if exists('+termguicolors')
+"   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"   set termguicolors
+" endif
+" colorscheme spaceduck
 " ---------------------
 
 " ----- tokyonight -----
-" if (has("termguicolors"))
-"  set termguicolors
-" endif
-" let g:tokyonight_style = "night" " storm, night, day
-" let g:tokyonight_italic_functions = 1
-" colorscheme tokyonight
-" set background=dark
+if (has("termguicolors"))
+ set termguicolors
+endif
+let g:tokyonight_style = "storm" " storm, night, day
+let g:tokyonight_italic_functions = 1
+let g:tokyonight_sidebars = [ "qf", "vista_kind", "terminal", "packer" ]
+colorscheme tokyonight
+set background=dark
 " ----------------------
 
 
@@ -66,10 +74,9 @@ colorscheme spaceduck
 "PLUGIN KEY MAPPINGS
 "----------------------------------------------------------------------
 " fzf
-" use <Esc> to exit fzf
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
-nnoremap <silent> <C-p> :call FZFOpen(':GFiles')<CR>
-nnoremap <silent> <C-f> :call FZFOpen(':Files')<CR> 
+nnoremap <silent> <C-f> :call FZFOpen(':Files')<CR>
+nnoremap <silent> <C-p> :call FZFOpen(':GFiles')<CR> 
 " NERDTree
 noremap <silent> <C-b> :NERDTreeToggle<CR>
 " nerdcommenter
@@ -86,7 +93,9 @@ vmap <C-_> <Plug>NERDCommenterToggle
 let g:indentLine_setColors = 0
 let g:indentLine_char = '│'
 au FileType markdown let g:indentLine_setConceal= 0
-" let g:indentLine_fileTypeExclude = ['json','markdow']
+" let g:indentLine_fileTypeExclude = ['json','markdown']
+
+
 " ---- vim-closetag
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
@@ -108,20 +117,36 @@ let g:NERDCompactSexyComs = 1 " use compact syntax for prettified multi-line com
 let g:NERDDefaultAlign = 'left' " align line-wise comment delimiters flush left instead of following code indentation
 let g:MERDCommentEmptyLines = 1 " allow commenting and inverting empty lines
 
-" ---- LSP config 
-nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-
+" ---- lspconfig
 " auto-format
 autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
+
+" ---- vim-vsnip
+" nvim-compe
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+" Expand
+imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+
+" Expand or jump
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+
+" Jump forward or backward
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+
+" Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
+" See https://github.com/hrsh7th/vim-vsnip/pull/50
+nmap        s   <Plug>(vsnip-select-text)
+xmap        s   <Plug>(vsnip-select-text)
+nmap        S   <Plug>(vsnip-cut-text)
+xmap        S   <Plug>(vsnip-cut-text)
 
 
 " ---- nerdtree-git-plugin
@@ -157,16 +182,26 @@ let g:startify_custom_header = [
 	\]
 " ---- lightline
 let g:lightline = {
-	\ 'colorscheme': 'spaceduck',
+	\ 'colorscheme': 'tokyonight',
 	\ 'active': {
 	\ 	'left': [ [ 'mode', 'paste' ],
-	\ 					  [ 'cocstatus', 'gitbranch', 'readonly', 'filename', 'modified'] ]
+	\ 					  [ 'filename', 'gitbranch', 'readonly'] ]
 	\ },
 	\ 'component_function': {
-	\ 	'costatus': 'coc#status',
-	\ 	'gitbranch': 'gitbranch#name'
+        \  	'filename': 'LightlineFilename',
+        \ 	'gitbranch': 'LightLineGitBranch'
 	\ },
 	\ }
+function! LightLineGitBranch()
+    return ' ' ..gitbranch#name()
+endfunction
+
+function! LightlineFilename()
+    let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+    let modified = &modified ? ' +' : ''
+    return filename . modified
+endfunction
+
 " ---- nerdtree-syntax-highlight
 let g:NERDTreeHighlightFolders = 1 " Enable folder icon highlighting using exact match
 let g:NERDTreeHighlightFoldersFullName = 1 " Highlight folder name
