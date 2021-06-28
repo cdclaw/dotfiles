@@ -15,30 +15,42 @@ Neovim is a fork of vim and also a super cool replacement of vim. I choose over 
 ### Structure
 I modularized my init.vim file just to make it looks clearer. My init.vim does nothing except sourcing other files.
 
-| File             | Description              | Location                   | 
-| ---------------- | ------------------------ | -------------------------- |
-| init.vim         | init file                | ~/.config/nvim/init.vim    |
-| general.vim      | general config & key map | ~/.config/nvim/general.vim |
-| plugins.vim      | plugins and config       | ~/.config/nvim/plugins.vim |
-
+| File             | Description                               | 
+| ---------------- | ----------------------------------------- |
+| init.vim         | entry point for sourcing                  | 
+| general.vim      | general config                            |
+| plugins.vim      | plugins and related config                | 
+| mappings.vim     | key mappings & plugin key mappings        |
+| lsp/config.vim   | Language Server Protocol related settings |
 
 ### Plugins
 * Plugin Manager - [vim-plug]('https://github.com/junegunn/vim-plug')
-* Autocompletion - [Coc]('https://github.com/neoclide/coc.nvim')
 * File Explorer - [NERDTree]('https://github.com/preservim/nerdtree/blob/master/doc/NERDTree.txt')
-* Icons - [vim-devicons]('https://github.com/ryanoasis/vim-devicons')
+* Icons 
+  * [vim-devicons]('https://github.com/ryanoasis/vim-devicons')
+  * [nvim-web-devicons]('https://github.com/kyazdani42/nvim-web-devicons')
 * Statusline - [lightline]('https://github.com/itchyny/lightline.vim')
 * Statusline git branch - [vim-gitbranch]('https://github/itchyny/vim-gitbranch')
 * Start Screen - [vim-startify]('https://github.com/mhinz/vim-startify')
 * Markdown Preview - [markdown-preview]('https://github.com/iamcco/markdown-preview.nvim')
+* File Search - [fzf]('https://github.com/junegunn/fzf')
 * Commenter - [nerdcommenter]('https://github.com/preservim/nerdcommenter')
 * Theme - [Dracula vim]('https://draculatheme.com/vim')
+* Autoclose Tag - [vim-closetag]('https://github.com/alvan/vim-closetag')
+* Indent Line - [indentLine]('https://github.com/Yggdroot/indentLine')
+* LSP
+  * [nvim-lspconfig]('https://github.com/neovim/nvim-lspconfig') 
+  * Autocomplete - [nvim-compe]('https://github.com/hrsh7th/nvim-compe') 
+  * Snippets - [vim-vsnip]('https://github.com/neovim/vim-vsnip')
+  * VSCode 💡 - [nvim-lightbulb]('https://github.com/nvim-lightbulb')
 
 ### Key Maps
 
-Panel navigation - `alt+hjkl` to move bwteen split/vsplit panels
+See `mappings.vim` for detail
 
-Switch between tabs - `gt`
+Panel navigation - `ctrl+hjkl` to move bwteen split/vsplit panels
+
+Switch between tabs - `gt` or see barbar tabline section in `mappings.vim` 
 
 Open terminal - `ctrl+n`
 
@@ -54,10 +66,6 @@ File Search (with fzf)
 Open file after select from search result
 * `ctrl+s` to open on vsplit window
 * `ctrl+t` to open in a new tab
-
-Coc
-* `gd` to go to code defination when hover
-* `F2` to rename current word
 
 Nerdcommenter
 * `ctrl+/` to toggle comment
