@@ -53,25 +53,30 @@ call plug#end()
 
 "----------------------------------------------------------------------
 "THEME & COLORS
+
+" ----- background transparent with terminal -----
+au ColorScheme * hi Normal ctermbg=none guibg=none
+au ColorScheme myspecialcolors hi Normal ctermbg=red guibg=red
+
 " ----- spaceduck -----
-" set background=dark
-" if exists('+termguicolors')
-"   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-"   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-"   set termguicolors
-" endif
-" colorscheme spaceduck
+set background=dark
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+colorscheme spaceduck
 " ---------------------
 
 " ----- tokyonight -----
-if (has("termguicolors"))
- set termguicolors
-endif
-let g:tokyonight_style = "storm" " storm, night, day
-let g:tokyonight_italic_functions = 1
-let g:tokyonight_sidebars = [ "qf", "vista_kind", "terminal", "packer" ]
-colorscheme tokyonight
-set background=dark
+" if (has("termguicolors"))
+"  set termguicolors
+" endif
+" let g:tokyonight_style = "storm" " storm, night, day
+" let g:tokyonight_italic_functions = 1
+" let g:tokyonight_sidebars = [ "qf", "vista_kind", "terminal", "packer" ]
+" colorscheme tokyonight
+" set background=dark
 " ----------------------
 
 "----------------------------------------------------------------------
@@ -145,7 +150,7 @@ let g:startify_custom_header = [
 
 " ---- lightline
 let g:lightline = {
-	\ 'colorscheme': 'tokyonight',
+	\ 'colorscheme': 'spaceduck',
 	\ 'active': {
 	\ 	'left': [ [ 'mode', 'paste' ],
 	\ 					  [ 'filename', 'gitbranch', 'readonly'] ]
